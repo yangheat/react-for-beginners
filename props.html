@@ -9,17 +9,17 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     // function Btn(props) {
-    function Btn({ text, fontSize }) {
-      console.log(text, fontSize);
+    function Btn({ text, changeValue }) {
+      console.log(text, "was render");
       return (
         <button
+          onClick={changeValue}
           style={{
             backgroundColor: "tomato",
             color: "white",
             padding: "10px 20px",
             border: 0,
             borderRadius: 10,
-            fontSize: fontSize ? 18 : 16,
           }}
         >
           {text}
@@ -27,11 +27,17 @@
       );
     }
 
+    // props가 변경되지 않는다면 다시 그릴 필요가 없다고 알려준다.
+    const MemorizedBtn = React.memo(Btn);
+
     function App() {
+      const [value, setValue] = React.useState("Save Change");
+      const changeValue = () => setValue("Revert Change");
+
       return (
         <div>
-          <Btn text="Save Change" fontSize={true} />
-          <Btn text="Confirm" fontSize={false} />
+          <MemorizedBtn text={value} changeValue={changeValue} />
+          <MemorizedBtn text="Confirm" />
         </div>
       );
     }
