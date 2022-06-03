@@ -10,7 +10,7 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     // function Btn(props) {
-    function Btn({ text, changeValue }) {
+    function Btn({ text, changeValue, fontSize = 12 }) {
       console.log(text, "was render");
       return (
         <button
@@ -21,6 +21,7 @@
             padding: "10px 20px",
             border: 0,
             borderRadius: 10,
+            fontSize,
           }}
         >
           {text}
@@ -32,8 +33,9 @@
     const MemorizedBtn = React.memo(Btn);
 
     MemorizedBtn.propTypes = {
-      text: PropTypes.string,
+      text: PropTypes.string.isRequired,
       changeValue: PropTypes.func,
+      fontSize: PropTypes.number,
     };
 
     function App() {
@@ -43,7 +45,7 @@
       return (
         <div>
           <MemorizedBtn text={value} changeValue={changeValue} />
-          <MemorizedBtn text="Confirm" />
+          <MemorizedBtn text="Confirm" fontSize={18} />
         </div>
       );
     }
