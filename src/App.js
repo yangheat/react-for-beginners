@@ -1,19 +1,37 @@
 import { useState } from "react";
 import BasicPratice from "./BasicPratice";
+import CoinTracker from "./CoinTracker";
 import ToDoList from "./ToDoList";
 
 function App() {
-  const [showing, setShowing] = useState(false);
-  const basicSectionShowingEvent = () => setShowing((prev) => !prev);
+  const [basicSectionShowing, setBasicSectionShowing] = useState(false);
+  const [toDoListSectionShowing, setToDoListSectionShowing] = useState(false);
+  const [coinTrackerShowing, setCoinTrackerShowing] = useState(false);
+
+  const basicSectionShowingEvent = () =>
+    setBasicSectionShowing((prev) => !prev);
+  const toDoListSectionShowingEvent = () =>
+    setToDoListSectionShowing((prev) => !prev);
+  const setCoinTrackerShowingEvent = () =>
+    setCoinTrackerShowing((prev) => !prev);
 
   return (
     <>
-      <ToDoList />
+      <hr />
+      <button onClick={setCoinTrackerShowingEvent}>
+        To Do List Section {coinTrackerShowing ? "hide" : "show"}
+      </button>
+      {coinTrackerShowing ? <CoinTracker /> : null}
+      <hr />
+      <button onClick={toDoListSectionShowingEvent}>
+        To Do List Section {toDoListSectionShowing ? "hide" : "show"}
+      </button>
+      {toDoListSectionShowing ? <ToDoList /> : null}
       <hr />
       <button onClick={basicSectionShowingEvent}>
-        Basic Section {showing ? "Show" : "Hide"}
+        Basic Section {basicSectionShowing ? "Hide" : "Show"}
       </button>
-      {showing ? <BasicPratice /> : null}
+      {basicSectionShowing ? <BasicPratice /> : null}
     </>
   );
 }
