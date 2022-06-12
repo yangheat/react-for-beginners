@@ -1,8 +1,8 @@
-import Button from "./Button";
-import styles from "./BasicPractice.module.css";
+import Button from "../css/Basic/Button";
+import styles from "../css/Basic/BasicPractice.module.css";
 import { useState, useEffect } from "react";
 
-function BasicPratice() {
+function Basic() {
   const [count, setCount] = useState(0);
   const [keyword, setKeyword] = useState("");
   const [showing, setShowing] = useState(false);
@@ -56,4 +56,4 @@ function BasicPratice() {
   );
 }
 
-export default BasicPratice;
+export default Basic;

@@ -1,7 +1,10 @@
 import { useState } from "react";
-import BasicPratice from "./BasicPratice";
-import CoinTracker from "./CoinTracker";
-import ToDoList from "./ToDoList";
+import { Routes, Route, Link } from "react-router-dom";
+import CoinTracker from "./routes/CoinTracker";
+import Home from "./routes/Home";
+import ToDoList from "./routes/ToDoList";
+import Basic from "./routes/Basic";
+import Movies from "./routes/Movies";
 
 function App() {
   const [basicSectionShowing, setBasicSectionShowing] = useState(false);
@@ -16,7 +19,15 @@ function App() {
     setCoinTrackerShowing((prev) => !prev);
 
   return (
-    <>
+    <div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/basic" element={<Basic />} />
+        <Route path="/todolist" element={<ToDoList />} />
+        <Route path="/cointraker" element={<CoinTracker />} />
+        <Route path="/Movies" element={<Movies />} />
+      </Routes>
+      {/* <Movies />
       <hr />
       <button onClick={setCoinTrackerShowingEvent}>
         To Do List Section {coinTrackerShowing ? "hide" : "show"}
@@ -31,8 +42,8 @@ function App() {
       <button onClick={basicSectionShowingEvent}>
         Basic Section {basicSectionShowing ? "Hide" : "Show"}
       </button>
-      {basicSectionShowing ? <BasicPratice /> : null}
-    </>
+      {basicSectionShowing ? <BasicPratice /> : null} */}
+    </div>
   );
 }
 
