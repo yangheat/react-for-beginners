@@ -3,7 +3,8 @@ import CoinTracker from "./routes/CoinTracker";
 import Home from "./routes/Home";
 import ToDoList from "./routes/ToDoList";
 import Basic from "./routes/Basic";
-import Movies from "./routes/Movies";
+import Movies from "./routes/movies/Movies";
+import Detail from "./routes/movies/Detail";
 
 function App() {
   return (
@@ -12,9 +13,11 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/basic" element={<Basic />} />
         <Route path="/todolist" element={<ToDoList />} />
-        <Route path="/cointraker" element={<CoinTracker />} />
-        <Route path="/Movies" element={<Movies />} />
-        <Route path="/Movies/:id" element={<Movies />} />
+        <Route path="/cointraker" element={<CoinTracker />} />"
+        <Route path="/movies">
+          <Route path="" element={<Movies />} />
+          <Route path=":id" element={<Detail />} />
+        </Route>
       </Routes>
     </div>
   );

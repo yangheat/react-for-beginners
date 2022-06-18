@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
-import Movie from "../components/Movie";
-import { useParams } from "react-router-dom";
+import Movie from "../../components/Movie";
 
 function Movies() {
+  console.log("movies");
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
-
-  const s = useParams();
-  console.log(s);
 
   const getMovies = async () => {
     // const response = await fetch(
