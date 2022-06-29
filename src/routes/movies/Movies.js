@@ -1,20 +1,15 @@
 import { useEffect, useState } from "react";
 import Movie from "../../components/Movie";
+import "../../css/Movies.css";
 
 function Movies() {
-  console.log("movies");
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
 
   const getMovies = async () => {
-    // const response = await fetch(
-    //   "https://yts.mx/api/v2/list_movies.json?minimum_rating=8.8&sort_by=year"
-    // );
-    // const json = await response.json()
-
     const json = await (
       await fetch(
-        "https://yts.mx/api/v2/list_movies.json?minimum_rating=8.8&sort_by=year"
+        "https://yts.mx/api/v2/list_movies.json?minimum_rating=10&sort_by=year"
       )
     ).json();
 
@@ -27,20 +22,25 @@ function Movies() {
   }, []);
 
   return (
-    <div>
+    <div className="contents">
       {loading ? (
         <strong>Loading...</strong>
       ) : (
-        movies.map((movie) => (
-          <Movie
-            key={movie.id}
-            id={movie.id}
-            converImg={movie.medium_cover_image}
-            title={movie.title}
-            summary={movie.summary}
-            genres={movie.genres}
-          />
-        ))
+        <ul>
+          {movies.map((movie) => (
+            <Movie
+              key={movie.id}
+              id={movie.id}
+              converImg={movie.medium_cover_image}
+              title={movie.title_long}
+              rating={movie.rating}
+              summary={movie.summary}
+              genres={movie.genres}
+              runtime={movie.runtime}
+              release={movie.date_uploaded}
+            />
+          ))}
+        </ul>
       )}
     </div>
   );

@@ -1,19 +1,32 @@
 import PropTypes from "prop-types";
+// import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Movie({ id, converImg, title, summary, genres }) {
+function Movie({ id, converImg, title, rating, genres, runtime }) {
+  // const [text, setText] = useState();
+
+  // if (title.length > 19) {
+  //   setText(`${title.slice(0, 18)}...`);
+  // }
   return (
-    <div>
-      <img src={converImg} alt={title} />
+    <li>
+      <div className="thump">
+        <Link to={`/movies/${id}`}>
+          <img src={converImg} alt={title} />
+        </Link>
+      </div>
       {/* https://yts.mx/api/v2/movie_details.json?movie_id=37384 */}
-      <h2>
-        <Link to={`/movies/${id}`}>{title}</Link>
-      </h2>
-      <p>{summary}</p>
-      {genres.map((genr, index) => (
-        <li key={index}>{genr}</li>
-      ))}
-    </div>
+      <dl className="description">
+        <dd>
+          <Link to={`/movies/${id}`}>{title}</Link>
+        </dd>
+        <dd>{rating}</dd>
+        <dd>{genres.join("/")}</dd>
+        <dd>
+          {Math.round(runtime / 60)}H {runtime % 60}M
+        </dd>
+      </dl>
+    </li>
   );
 }
 
@@ -21,8 +34,6 @@ Movie.propTypes = {
   id: PropTypes.number.isRequired,
   converImg: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  summary: PropTypes.string.isRequired,
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default Movie;
