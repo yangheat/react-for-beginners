@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CoinTracker from "./routes/CoinTracker";
 import Home from "./routes/Home";
 import ToDoList from "./routes/ToDoList";
